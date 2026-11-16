@@ -1,281 +1,258 @@
 ---
 name: 12-principles-of-animation
 description: >
-  Skill gathering the 12 basic principles of animation — the set of guidelines
-  developed by Ollie Johnston and Frank Thomas in "The Illusion of Life:
-  Disney Animation" (1981) — organized for study, reference, and application
-  in traditional and digital animation. Includes visuals, practical examples,
-  and application suggestions.
-category: education
-tags: [animation, principles, disney, visual, study, reference, skills]
-version: 1.0.0
+  Execution skill for animation agents. Identifies the task type, selects
+  the relevant principles of animation, applies them to the context, generates
+  a solution, and self-evaluates against defined criteria. Includes the full
+  12 Principles of Animation reference and an evaluation rubric.
+category: creative
+tags: [animation, principles, disney, agent-framework, execution, motion, evaluation]
+version: 2.0.0
 author: CaioBLima
 homepage: https://pt.wikipedia.org/wiki/12_princ%C3%ADpios_b%C3%A1sicos_de_anima%C3%A7%C3%A3o
 ---
 
-# 12 Principles of Animation
+# 12 Principles of Animation — Agent Execution Skill
 
-The **12 Basic Principles of Animation** were developed by Disney and
-introduced by Ollie Johnston and Frank Thomas in their 1981 book
-*The Illusion of Life: Disney Animation*. They based their book on the work
-of Disney's leading animators of the 1930s, who sought to produce more
-realistic animation. The primary purpose of the principles was to create the
-illusion that animated characters obeyed the basic laws of physics — but they
-also addressed more abstract issues, such as emotional timing and
-character appeal.
+## What this skill does
 
-The book and several of its principles were adopted by some traditional
-animation studios and have been cited by some as the "Bible of
-animation". In 1999, the book was voted the number one "best animation book
-of all time" in an online poll by *Animation World Network*.
+This skill turns the **12 Basic Principles of Animation** into a repeatable
+workflow for an AI animation agent. Every time the agent receives an
+animation request, it follows a **5-step loop**:
 
-> **How to use this skill:** open any principle and go from theory to
-> practice — see the definition, purpose, and an example visual. Use
-> `templates/study-log.md` to keep your own animation notebook, or the
-> `references/*.md` files to go deeper into a specific topic.
+1. Identify the type of task
+2. Select the relevant principles
+3. Apply them to the context
+4. Generate a solution
+5. Evaluate the result using defined criteria
+
+The agent then keeps its own results against a self-assessment checklist.
 
 ---
 
-## The 12 Principles
+## The 5-Step Workflow
 
-1. [Squash and Stretch](#1-squash-and-stretch)
-2. [Anticipation](#2-anticipation)
-3. [Staging](#3-staging)
-4. [Straight Ahead Action and Pose to Pose](#4-straight-ahead-action-and-pose-to-pose)
-5. [Follow Through and Overlapping Action](#5-follow-through-and-overlapping-action)
-6. [Slow In and Slow Out](#6-slow-in-and-slow-out)
-7. [Arcs](#7-arcs)
-8. [Secondary Action](#8-secondary-action)
-9. [Timing](#9-timing)
-10. [Exaggeration](#10-exaggeration)
-11. [Solid Drawing](#11-solid-drawing)
-12. [Appeal](#12-appeal)
+### Step 1 — Identify the type of task
 
----
+Classify the request into one or more task types:
 
-## 1. Squash and Stretch
+| Task type | Examples | Primary mediums |
+|---|---|---|
+| **UI / web animation** | Components, transitions, micro-interactions | Web, CSS, GSAP |
+| **Character animation** | Poses, walk cycles, expressions | 2D, 3D, Blender, Spine |
+| **Motion graphics / brand** | Logo reveal, kinetic typography | After Effects, GSAP, HTML/CSS |
+| **Video / film** | Short film, product video, explainer | Motion design, video generation |
+| **Game animation** | Character, gameplay, UI, mechanics | Unity, Godot, Unreal |
 
-![Squash and Stretch](assets/squash-and-stretch.svg)
+For the chosen type, the agent notes:
+- **Medium** — web, video, 2D, 3D, game, etc.
+- **Tool / path** — CSS, GSAP, Blender, After Effects, video-generation
+  prompt, etc.
+- **Constraints** — duration, resolution, framerate, file size, performance.
 
-The principle of **squash and stretch** shows a ball falling with rigid,
-non-dynamic movement (example A). In example B the ball is "squashed" by the
-impact and "stretched" during the fall and bounce. The movement also
-accelerates during the fall and decelerates toward the apex — the principle
-of "slow in and slow out".
+### Step 2 — Select the relevant principles
 
-**Purpose:** to give drawn objects a sense of weight and flexibility. It can
-be applied to simple objects, like a bouncing ball, or to more complex
-constructions, like human facial musculature. Taken to an extreme, a
-stretched or squashed figure can be comical.
+From the 12 principles, select the ones that matter for this task type.
+Use the table below as a guide, then refine with reasons.
 
-In realistic animation, the most important aspect is that the object's
-**volume does not change** when squashed or stretched: if a ball's length is
-stretched vertically, its width (and depth, in 3D) must contract
-correspondingly horizontally.
+| Task type | Principles to prioritise |
+|---|---|
+| UI / web | Staging, Timing, Arcs, Slow In & Slow Out, Appeal |
+| Character | Anticipation, Arcs, Solid Drawing, Appeal, Timing |
+| Motion graphics | Timing, Arcs, Appeal, Staging, Exaggeration |
+| Video / film | Staging, Anticipation, Timing, Arcs, Appeal |
+| Game | Timing, Anticipation, Follow Through, Solid Drawing, Appeal |
 
----
+The agent must output **which** principles it selected and **why**.
 
-## 2. Anticipation
+### Step 3 — Apply them to the context
 
-Anticipation prepares the audience for an action and makes it feel more
-realistic. A dancer jumping off the ground must first bend their knees; a
-golfer must do a backswing, moving the club in the opposite direction before
-executing the movement.
+For each selected principle, the agent defines the concrete parameters:
 
-The technique also applies to less physical actions: a character looking
-out of the frame anticipates someone's arrival; attention focusing on an
-object a character is about to grab.
+- **What** is affected in this task?
+- **How** is it applied? (e.g. easing curve, duration, scale factor, arc
+  degrees)
+- **What is the expected effect?**
 
-![Anticipation](assets/anticipation-baseball.jpg)
+Example (UI button press):
 
-*Anticipation: a baseball player winding up a pitch, moving the arm back
-before throwing.*
+| Principle | Application |
+|---|---|
+| Squash and Stretch | button scale 0.92–0.98 on press, transform-origin centre |
+| Anticipation | 100ms hover lift before the click |
+| Timing | press 200ms, spring return |
 
----
+### Step 4 — Generate a solution
 
-## 3. Staging
+Produce the concrete artifact. Depending on the task type:
 
-The principle of staging is similar to staging in theater. Its purpose is to
-direct the audience's attention and make clear what is most important in the
-scene. Johnston and Thomas defined it as "the presentation of any idea so it
-is complete and undeniably clear", whether that idea is an action, a
-personality, an expression, or a mood.
+- **Code:** HTML/CSS/JS, GSAP, Blender script, After Effects script, etc.
+- **Prompt:** a video/film generation prompt, script, storyboard, or shot
+  list.
+- **Plan:** a prototype, asset list, or shot plan when no code exists yet.
 
-It can be achieved through character placement in the frame, use of light
-and shadow, or camera angle and position. The essence is to keep the focus
-on what matters and avoid unnecessary detail.
+The solution must be **complete and directly usable** (not a sketch).
 
----
+### Step 5 — Evaluate the result
 
-## 4. Straight Ahead Action and Pose to Pose
+The agent self-assesses the generated solution using the rubric below:
 
-Two different approaches in the animation process:
+| Score | Meaning |
+|---|---|
+| 1 | Missing or actively harmful |
+| 2 | Clearly failing |
+| 3 | Inconsistent / borderline |
+| 4 | Generally present, minor issues |
+| 5 | Present, applied deliberately and well |
 
-- **Straight Ahead:** scenes are animated frame by frame, from start to
-  finish. It creates a more fluid and dynamic movement illusion and is best
-  for realistic action sequences. However, it is difficult to maintain
-  proportions and create exact, convincing poses along the way.
-- **Pose to Pose:** a few key frames are drawn first, then the intervals are
-  filled in. It works better for dramatic or emotional scenes, where
-  composition and relationship to the surroundings matter. Combining both
-  techniques is very common.
-
-### In computer animation
-
-Computer animation removes the proportion problems of the "straight ahead"
-style, but "pose to pose" is still used because of its compositional
-advantages. Computers make this method easier and can automatically fill
-missing intermediate sequences.
+Then:
+1. Score each selected principle.
+2. Sum the scores (max 60).
+3. Map to a global label:
+   - 48–60: Production-ready
+   - 36–47: Polished
+   - 24–35: Work in progress
+   - 12–23: Hold
+   - 0–11: Critical
+4. List the failing items and how they will be remediated.
 
 ---
 
-## 5. Follow Through and Overlapping Action
+## The 12 Principles of Animation (reference)
 
-"Follow through and overlapping action" is a general designation for two
-closely related techniques that reproduce movement more realistically,
-giving the impression that characters follow the laws of physics, including
-the principle of inertia.
+### 1. Squash and Stretch
+- **Definition:** Drawing objects to give weight and flexibility.
+- **Purpose:** convey weight, elasticity, and volume.
+- **Example:** a bouncing ball squashes on impact and stretches during the
+  fall; volume stays constant.
 
-- **Follow through:** parts loosely attached to a body continue to move
-  after the character stops, beyond the point where the character stopped,
-  then are "pulled back" toward the center of mass or undergo damping
-  oscillation.
-- **Overlapping action:** body parts move at different speeds (an arm moves
-  in a different time from the head).
+### 2. Anticipation
+- **Definition:** A preparatory movement that makes the following action
+  look real.
+- **Purpose:** lead the eye and make the action feel intentional.
+- **Example:** a dancer bending knees before a jump; a golfer winding up.
 
-A third related technique is **follow through**, in which the character
-begins to move and parts of it take a few frames to catch up. This can be
-inanimate objects like clothing or a car antenna, or body parts like arms
-and hair. In the human body, the torso is the core, with arms, legs,
-head, and hair as appendages that follow the torso's movement. Body parts
-with a lot of tissue (wide stomachs and breasts, or dog floofs) are more
-prone to independent movement than bony parts.
+### 3. Staging
+- **Definition:** Presenting an idea so that it is complete and clear.
+- **Purpose:** direct attention and hide detail that does not support the
+  story.
+- **Example:** the hero action is the first thing to animate; other elements
+  stay quiet.
 
-Excessive use of the technique leads to a comical effect; more realistic
-animations must time the actions exactly.
+### 4. Straight Ahead Action and Pose to Pose
+- **Definition:** Two animation approaches — frame-by-frame from the start
+  (straight ahead) or from key poses with in-betweens (pose to pose).
+- **Purpose:** straight ahead suits fluid, organic action; pose to pose
+  suits composed, emotional, and controlled scenes.
+- **Example:** CSS `@keyframes` are pose to pose; GSAP timeline sequences
+  are often straight ahead.
 
-> **Moving hold:** animation between two very similar positions — characters
-> sitting still or barely moving — maintains some kind of slight movement,
-> such as breathing or a slight position change. This prevents the drawing
-> from becoming "dead".
+### 5. Follow Through and Overlapping Action
+- **Definition:** Parts of a body or object keep moving after the main body
+  stops (follow through) and parts move at different speeds
+  (overlapping).
+- **Purpose:** realism, inertia, and weight.
+- **Example:** hair and capes lag behind a stopping character; arms move at
+  a different rate from the head.
 
-![Follow Through](assets/muybridge-race-horse.gif)
+### 6. Slow In and Slow Out
+- **Definition:** Acceleration and deceleration — more frames at the start
+  and end of an action, fewer in the middle.
+- **Purpose:** give motion weight and natural physics.
+- **Example:** a ball rolls slowly up and down a curve, faster in the
+  middle.
 
-*Follow through and overlapping action: the tail and mane of the running
-horse gallop along with the body. Photo by Eadweard Muybridge.*
+### 7. Arcs
+- **Definition:** Natural motion follows an arc, not a straight line.
+- **Purpose:** smoothness and organic movement.
+- **Example:** an arm swings on an arc around the shoulder; a thrown ball
+  follows a parabolic path.
 
----
+### 8. Secondary Action
+- **Definition:** A supporting action that reinforces the main action.
+- **Purpose:** adds life and context, without stealing focus.
+- **Example:** a character walking while swinging their arms; a hand on
+  hip while speaking.
 
-## 6. Slow In and Slow Out
+### 9. Timing
+- **Definition:** The number of frames per action, which sets speed,
+  weight, mood, and character.
+- **Purpose:** the primary tool for enforcing physics and emotion.
+- **Example:** a light object reacts fast to a push; a heavy one reacts
+  slowly. A long pause says more than a line of dialogue.
 
-Objects in real life (human body, animals, vehicles) need time to
-accelerate and decelerate. For this reason, more frames are drawn at the
-**start** and **end** of an action, creating the effect of acceleration and
-deceleration. This concept emphasizes the extreme poses.
+### 10. Exaggeration
+- **Definition:** Presenting reality in a more evident or extreme way.
+- **Purpose:** avoid stiffness; create style and clarity.
+- **Example:** a dramatic punch with a bigger wind-up; a caricatured face
+  that still reads as the same character.
 
-Conversely, fewer drawings are made in the **middle** of the animation to
-emphasize the quick action. The principle applies to characters moving
-between two extreme poses (sitting and standing up) and to inanimate beings
-that move, like a bouncing ball.
+### 11. Solid Drawing
+- **Definition:** Taking into account 3D forms, volume, weight, balance,
+  light, and shadow.
+- **Purpose:** give the image weight and credibility.
+- **Example:** avoiding "twins" — mirrored left/right sides that look
+  lifeless. In 3D, keeping camera, light, and silhouette consistent.
 
----
-
-## 7. Arcs
-
-Most natural actions follow the trajectory of an arc, and animation should
-adopt this principle for greater realism. It can be applied to a limb
-moving through the rotation of a joint, or to a thrown object along a
-parabolic trajectory. The exception is mechanical movement, which typically
-moves in a straight line.
-
-As an object's speed or momentum increases, arcs tend to flatten and
-lengthen. In baseball, a fast ball tends to move in a straight line; an
-ice skater at maximum speed cannot turn as tightly as a slower skater and
-needs more space to complete a turn.
-
-An object that moves outside its natural arc without apparent reason looks
-inconsistent rather than fluid. When animating a pointing finger, the tip
-should follow a logical arc between two extreme poses. Traditional
-animators lightly draw the arc on paper as a reference, to be erased later.
-
----
-
-## 8. Secondary Action
-
-Adding secondary actions to the main action gives the scene more life and
-can help support the main action. A walking person can, at the same time,
-swing their arms, keep them in their pockets, talk, whistle, or express
-emotions through facial expressions.
-
-The important thing about secondary actions is that they must emphasize the
-main action, not distract from it. If that is the case, it is better to
-leave them out. For example, during a dramatic movement, facial expressions
-are usually unnoticed; in these cases, it is better to include them at the
-beginning and end of the movement, rather than during it.
-
----
-
-## 9. Timing
-
-Timing refers to the number of drawings or frames for a given action,
-representing the speed of the action in the film.
-
-At a purely physical level, correct timing makes the object seem to obey the
-laws of physics: weight determines how an object reacts to an impulse — a
-light object reacts faster than a heavy one. Timing is decisive for
-establishing the mood, emotion, and reaction of the character, and can also
-be a device to communicate aspects of the character's personality.
+### 12. Appeal
+- **Definition:** The charisma of a character, or the quality that makes it
+  engaging.
+- **Purpose:** make the character real, interesting, and memorable.
+- **Example:** friendly characters use symmetrical, "baby-like" features;
+  villains can have appeal too.
 
 ---
 
-## 10. Exaggeration
+## Evaluation Criteria
 
-Animated movements that try to perfectly imitate reality can appear stiff
-and awkward; exaggeration is particularly useful.
+Use this rubric when evaluating a generated solution (see Step 5).
 
-The level of exaggeration depends on whether you seek realism or a particular
-style (caricature, or the style of a specific artist). The classic
-Disney definition was to remain faithful to reality, presenting it in a more
-evident and extreme way. Other forms of exaggeration can involve the
-supernatural or surreal, alterations in a character's physical
-characteristics, or story elements themselves.
+### Per-principle rubric
 
-It is important to use a certain degree of restraint: if a scene contains
-many elements, there should be balance in how they are exaggerated in
-relation to one another, to avoid confusing or intimidating the viewer.
+| Score | Meaning |
+|---|---|
+| 1 | Missing or actively harmful |
+| 2 | Clearly failing |
+| 3 | Inconsistent / borderline |
+| 4 | Generally present, minor issues |
+| 5 | Present, applied deliberately and well |
+
+### Global scores
+
+| Total (out of 60) | Label | Action |
+|---|---|---|
+| 48–60 | Production-ready | Ship |
+| 36–47 | Polished | Fix marked items, then ship |
+| 24–35 | Work in progress | Fix before shipping |
+| 12–23 | Hold | Pull, remediate, re-test |
+| 0–11 | Critical | Immediate review required |
+
+### Quick checklist
+
+- [ ] **Staging:** one focal point per screen/sequence
+- [ ] **Anticipation:** preparatory movement present
+- [ ] **Timing:** durations match intent; 60 fps
+- [ ] **Arcs:** natural paths, no linear or erratic motion
+- [ ] **Follow-through:** elements settle after the action
+- [ ] **Secondary:** supports, does not contradict
+- [ ] **Appeal:** pleasant, clear, engaging
+- [ ] **Squash & Stretch:** volume constant, weight readable
+- [ ] **Solid Drawing:** silhouette legible at distance
 
 ---
 
-## 11. Solid Drawing
+## Self-Assessment Checklist (for the agent)
 
-The principle of "solid drawing" means taking into account forms in
-three-dimensional space, giving them volume and weight. The animator needs
-to be a talented artist and understand the basics of three-dimensional
-shapes, anatomy, weight, balance, light, and shadow.
+Before delivering a result, the agent must confirm:
 
-For the classic animator, this involved attending art classes and doing
-lifedrawing. Johnston and Thomas warned about the creation of "twins":
-characters whose left and right sides are mirrored and seem lifeless.
-
-### In computer animation
-
-Despite digital animators drawing less thanks to computer convenience, they
-still benefit greatly from understanding the basic principles and their
-additions to computer animation.
-
----
-
-## 12. Appeal
-
-Appeal in an animated character corresponds to what would be called charisma
-in an actor. A character with appeal is not necessarily likable: villains
-and monsters can have it too. The important thing is that the viewer feels
-the character is real and interesting.
-
-There are many tricks to make a character connect better with the audience.
-For friendly characters, a symmetrical face or "baby-like" face tends to be
-effective. A complicated or hard-to-read face lacks appeal or "attraction" in
-the composition of the pose or the character's drawing.
+- [ ] I identified the task type (UI / Character / Motion graphics / Video
+  / Game).
+- [ ] I selected the relevant principles and gave reasons for each.
+- [ ] I applied each selected principle with concrete parameters (values,
+  durations, easing, etc.).
+- [ ] I generated a complete, usable solution (code, prompt, or plan).
+- [ ] I evaluated the result with the rubric and recorded the score and the
+  failing items.
 
 ---
 
@@ -285,10 +262,5 @@ the composition of the pose or the character's drawing.
    (1981).
 2. Wikipedia —
    [12 basic principles of animation](https://pt.wikipedia.org/wiki/12_princ%C3%ADpios_b%C3%A1sicos_de_anima%C3%A7%C3%A3o).
-3. "Walt Disney's Nine Old Men & The Art Of Animation", *Animation World
-   Network*.
-4. Lasseter, John. "Principles of traditional animation applied to 3D
+3. Lasseter, John. "Principles of traditional animation applied to 3D
    computer animation" (SIGGRAPH, 1987).
-
-Detailed principles with original citations and sources are on the
-Wikipedia page.
